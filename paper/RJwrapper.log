@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  25 NOV 2026 11:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  25 NOV 2026 12:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -868,9 +868,7 @@ Overfull \hbox (55.35532pt too wide) in paragraph at lines 72--73
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
 ts/enc/dvips/base/8r.enc}
 
-{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}] [2 <./figures/
-penguins.png> <./gipsDA-paper_files/gipsDA-paper_files/figure-latex/penguins-gg
-plot-1.pdf>]
+{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 9.37807pt on input line 14.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
@@ -882,7 +880,8 @@ LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
 (Font)              scaled to size 9.18004pt on input line 90.
-) [3] (./RJwrapper.aux)
+[2 <./figures/penguins.png>] [3 <./gipsDA-paper_files/gipsDA-paper_files/figure
+-latex/penguins-ggplot-1.pdf>]) [4] (./RJwrapper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -896,21 +895,21 @@ Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 (rerunfilecheck)             Checksum: C3F8DC6209FE66D5B9156CBAC85F9672;184.
  ) 
 Here is how much of TeX's memory you used:
- 27137 strings out of 468874
- 486864 string characters out of 5453586
- 924788 words of memory out of 5000000
+ 27156 strings out of 468874
+ 487023 string characters out of 5453586
+ 923788 words of memory out of 5000000
  55200 multiletter control sequences out of 15000+600000
- 657797 words of font info for 166 fonts, out of 8000000 for 9000
+ 658677 words of font info for 178 fonts, out of 8000000 for 9000
  370 hyphenation exceptions out of 8191
- 117i,11n,131p,1006b,679s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,11n,131p,1338b,672s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></
 usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/pal
 atino/uplri8a.pfb>
-Output written on RJwrapper.pdf (3 pages, 130967 bytes).
+Output written on RJwrapper.pdf (4 pages, 133311 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
- 19 named destinations out of 1000 (max. 500000)
+ 136 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
  49223 words of extra memory for PDF output out of 51595 (max. 10000000)
 

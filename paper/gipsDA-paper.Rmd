@@ -1,8 +1,23 @@
 ---
 title: "ToOoOlTiPs: An R Package for Customizable Tooltips in Interactive Graphics"
 date: "2022-11-09"
-abstract: >
-  An abstract of less than 150 words.
+abstract: > 
+  Statistical classification is a fundamental problem in machine learning and data
+  analysis, with applications ranging from genomic sequencing and medical diagnosis to
+  financial forecasting. Among the vast landscape of classification algorithms, generative
+  models such as Linear and Quadratic Discriminant Analysis (LDA and QDA) remain
+  cornerstones of the field due to their rigorous statistical foundations,
+  interpretability, and computational efficiency. However, nowadays these classical
+  methods are frequently confronted with high-dimensional datasets, scenarios where the
+  number of features rivals or exceeds the number of observations. In such environments,
+  standard estimation techniques often fail, necessitating the development of more
+  robust approaches. We propose a novel solution to this challenge by harnessing the concept of invariance
+  under the action of a subgroup of the symmetric group for the task of discriminant
+  analysis. Specifically, we explore how identifying and enforcing permutation
+  symmetries within the data can serve as a form of model-based regularization,
+  stabilizing covariance estimation without resorting to arbitrary shrinkage.
+  **Keywords:** Classification, Discriminant Analysis, High-dimensional, Regularization,
+  Permutation Symmetries, Covariance Estimation
 draft: true
 author:  
   - name: Adam Chojecki
@@ -41,6 +56,7 @@ output:
 header-includes:
   - \providecommand{\pandocbounded}[1]{#1}
 bibliography: RJreferences.bib
+citation_url: https://rjournal.github.io/
 
 ---
 
