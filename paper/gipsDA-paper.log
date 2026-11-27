@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  25 NOV 2026 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  27 NOV 2026 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,5 +23,5 @@ Here is how much of TeX's memory you used:
  28807 multiletter control sequences out of 15000+600000
  627721 words of font info for 40 fonts, out of 8000000 for 9000
  370 hyphenation exceptions out of 8191
- 12i,0n,13p,101b,8s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 12i,0n,13p,181b,8s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -1,5 +1,5 @@
 % !TeX root = RJwrapper.tex
-\title{ToOoOlTiPs: An R Package for Customizable Tooltips in Interactive Graphics}
+\title{gipsDA: An R Package for Discriminant Analysis Regularized by Projection onto Cone Invariant Under Action of the Underlying Subgroup of The Symmetry Group}
 
 
 \author{by Adam Chojecki, Norbert Frydrysiak, and Antoni Kingston}
@@ -7,18 +7,66 @@
 \maketitle
 
 \abstract{%
-Statistical classification is a fundamental problem in machine learning and data analysis, with applications ranging from genomic sequencing and medical diagnosis to financial forecasting. Among the vast landscape of classification algorithms, generative models such as Linear and Quadratic Discriminant Analysis (LDA and QDA) remain cornerstones of the field due to their rigorous statistical foundations, interpretability, and computational efficiency. However, nowadays these classical methods are frequently confronted with high-dimensional datasets, scenarios where the number of features rivals or exceeds the number of observations. In such environments, standard estimation techniques often fail, necessitating the development of more robust approaches. We propose a novel solution to this challenge by harnessing the concept of invariance under the action of a subgroup of the symmetric group for the task of discriminant analysis. Specifically, we explore how identifying and enforcing permutation symmetries within the data can serve as a form of model-based regularization, stabilizing covariance estimation without resorting to arbitrary shrinkage. \textbf{Keywords:} Classification, Discriminant Analysis, High-dimensional, Regularization, Permutation Symmetries, Covariance Estimation
+Statistical classification is a fundamental problem in machine learning and data analysis, with applications ranging from genomic sequencing and medical diagnosis to financial forecasting. Among the vast landscape of classification algorithms, generative models such as Linear and Quadratic Discriminant Analysis (LDA and QDA) remain cornerstones of the field due to their rigorous statistical foundations, interpretability, and computational efficiency. However, nowadays these classical methods are frequently confronted with high-dimensional datasets, scenarios where theby number of features rivals or exceeds the number of observations. In such environments, standard estimation techniques often fail, necessitating the development of more robust approaches. We propose a novel solution to this challenge by harnessing the concept of invariance under the action of a subgroup of the symmetric group for the task of discriminant analysis. Specifically, we explore how identifying and enforcing permutation symmetries within the data can serve as a form of model-based regularization, stabilizing covariance estimation without resorting to arbitrary shrinkage. \textbf{Keywords:} Classification, Discriminant Analysis, High-dimensional, Regularization, Permutation Symmetries, Covariance Estimation
 }
 
 \section{Introduction}\label{introduction}
 
-Interactive data graphics provides plots that allow users to interact them. One of the most basic types of interaction is through tooltips, where users are provided additional information about elements in the plot by moving the cursor over the plot.
+Well-established generative classifiers, such as Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA), remain fundamental tools in statistical machine learning \citep{elemstats} due to their interpretability and closed-form solutions.
+However, the performance of these methods is critically dependent on accurate estimation of class-conditional covariance matrices, denoted as \(\boldsymbol{\Sigma}\).
+In the current state of affairs it is not uncommon for researchers to encounter high-dimensional datasets where the number of features (\(p\)) is large relative to the number of available observations (\(n\)).
+In such settings, standard estimators often fail, rendering classical methods suboptimal or entirely inapplicable.
 
-This paper will first review some R packages on interactive graphics and their tooltip implementations. A new package \CRANpkg{ToOoOlTiPs} that provides customized tooltips for plot, is introduced. Some example plots will then be given to showcase how these tooltips help users to better read the graphics.
+The bottleneck of the aforementioned classifiers lies in the sample covariance matrix, \(\hat{\boldsymbol{\Sigma}}\).
+For a dataset with \(p\) features, the covariance matrix contains \(p(p+1)/2\) unique parameters that must be estimated.
+This implies a quadratic relation between model's complexity and the dimension of the feature space.
+The relation leads to two primary challenges:
 
-\section{Background}\label{background}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Parameter Instability:} When \(p\) is large, the number of parameters to estimate can easily exceed the information content available in the training data. This results in estimates with high variance, leading to overfitting and poor generalization performance on unseen data.
+\item
+  \textbf{Estimator Singularity:} In extreme regimes where the number of features exceeds the sample size (\(p > n\)), the sample covariance matrix \(\hat{\boldsymbol{\Sigma}}\) becomes rank-deficient. Consequently, it is no longer positive definite and, as such, not invertible. Since the decision functions for both LDA and QDA require computation of the precision matrix \(\hat{\boldsymbol{\Sigma}}^{-1}\), classical algorithms break down in these scenarios.
+\end{enumerate}
 
-Some packages on interactive graphics include \CRANpkg{plotly} \citep{plotly} that interfaces with Javascript for web-based interactive graphics, \CRANpkg{crosstalk} \citep{crosstalk} that specializes cross-linking elements across individual graphics. The recent R Journal paper \CRANpkg{tsibbletalk} \citep{RJ-2021-050} provides a good example of including interactive graphics into an article for the journal. It has both a set of linked plots, and also an animated gif example, illustrating linking between time series plots and feature summaries.
+One way of mitigating these are various regularization techniques.
+While standard approaches often involve scalar shrinkage (e.g., shrinking towards the identity matrix) \citep{friedman1989regularized}, \citep{ledoit2004well}, this project explores a structural approach.
+We explore whether by identifying and enforcing permutation symmetries within the data --- where certain variables are to be exchangeable --- one can significantly reduce the number of free parameters required to estimate the covariance structure.
+
+The assumption that distinct features in a dataset share a permutation symmetry---meaning they remain invariant under specific reorderings---may appear (and often is) overly restrictive \citep{andersson1998symmetry}. In classical multivariate analysis, features are usually treated as distinct entities with unique variances and pairwise correlations. However, in the context of high-dimensional data, the assumption of symmetry is not only mathematically convenient but often empirically justified by the underlying nature of data itself.
+
+The core may be the concept of \emph{exchangeability}. In many datasets, features are not arbitrary measurements but rather collections of comparable units. Consider following domains where symmetry naturally arises:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Genomics and Bioinformatics:} In gene expression data, thousands of genes are measured simultaneously \citep{dudoit2002comparison}. Genes belonging to the same biological pathway or functional group often exhibit similar behavior. It is statistically plausible to assume that correlation between any pair of genes within such a functional cluster is roughly equivalent, regardless of their specific labels.
+\item
+  \textbf{Medical Diagnostics and Imaging:} Consider an analysis of digitized images for cancer diagnosis, such as Breast Cancer Wisconsin dataset used in \citep{breast}. Features are computed from the characteristics of cell nuclei present in the image (e.g., radius, texture, smoothness) \citep{street1993nuclear}. While each feature measures a distinct geometric property, groups of features derived from similar morphological aspects often display strong, structured correlations. Assuming a symmetric covariance structure among these related biometrics allows the model to capture the general ``shape'' of malignant cells without overfitting to the noise inherent in individual sample measurements.
+\item
+  \textbf{Industrial Sensor Systems:} In predictive maintenance and fault detection, systems are often monitored by multiple sensors recording analogous physical quantities. A prime example is the Sensorless Drive Diagnosis dataset \citep{dataset_for_sensorless_drive_diagnosis_325}, which involves electric current signals from different phases of a motor \citep{seera2014classification}. In a balanced three-phase system, the physical properties of the phases are designed to be identical. Consequently, the statistical relationship between Phase A and Phase B should theoretically be invariant to the relationship between Phase B and Phase C. Treating these signals as exchangeable via permutation symmetry reflects the physical reality of the hardware design.
+\end{itemize}
+
+Furthermore, the \pkg{gips} approach utilized by our package does not require prior knowledge of these specific relationships. Unlike rigid regularization methods that force the covariance matrix towards a specific target (such as the identity matrix), \pkg{gips} methodology aims to discover the optimal symmetry structure from the data itself \citep{JSSv112i07}.
+
+We introduce and implementat a novel regularization framework for Discriminant Analysis, designed for the ``High Dimension, Low Sample Size'' (HDLSS) regime.
+
+We highlight following functionalitites of our package: TODO
+* Funkcjonalności do zmyślenia / przekonania siebie samego
+
+The \pkg{gipsDA} is available at \href{https://cran.r-project.org/web/packages/gipsDA/}{CRAN} and can be installed in R with the following command
+
+\begin{verbatim}
+install.packages("gipsDA")
+\end{verbatim}
+
+The rest of the article is organized as follows. TODO
+
+\section{Related Work}\label{related-work}
+
+Some packages on interactive graphics include \CRANpkg{plotly} that interfaces with Javascript for web-based interactive graphics, \CRANpkg{crosstalk} that specializes cross-linking elements across individual graphics. The recent R Journal paper \CRANpkg{tsibbletalk} provides a good example of including interactive graphics into an article for the journal. It has both a set of linked plots, and also an animated gif example, illustrating linking between time series plots and feature summaries.
 
 \section{\texorpdfstring{Customizing tooltip design with \pkg{ToOoOlTiPs}}{Customizing tooltip design with }}\label{customizing-tooltip-design-with}
 
@@ -26,7 +74,7 @@ Some packages on interactive graphics include \CRANpkg{plotly} \citep{plotly} th
 
 \section{A gallery of tooltips examples}\label{a-gallery-of-tooltips-examples}
 
-The \CRANpkg{palmerpenguins} data \citep{palmerpenguins} features three penguin species which has a lovely illustration by Alison Horst in Figure \ref{fig:penguins-alison}.
+The \CRANpkg{palmerpenguins} data features three penguin species which has a lovely illustration by Alison Horst in Figure \ref{fig:penguins-alison}.
 
 \begin{figure}
 \includegraphics[width=1\linewidth,height=0.3\textheight,alt={A picture of three different penguins with their species: Chinstrap, Gentoo, and Adelie. }]{figures/penguins} \caption{Artwork by \@allison\_horst}\label{fig:penguins-alison}

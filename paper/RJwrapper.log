@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  25 NOV 2026 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.23)  27 NOV 2026 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -789,44 +789,28 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
 (./gipsDA-paper.tex
-<figures/penguins.png, id=45, 72.27pt x 42.9605pt>
-File: figures/penguins.png Graphic file (type png)
-<use figures/penguins.png>
-Package pdftex.def Info: figures/penguins.png  used on input line 32.
-(pdftex.def)             Requested size: 398.44772pt x 212.57635pt.
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 35
-.
-(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
-File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
-)
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.18004pt on input line 35.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `zi4' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 4
-2.
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 1
+6.
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-42.
+16.
 (/usr/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-42.
+16.
 (/usr/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-42.
+16.
 (/usr/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-42.
+16.
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
@@ -835,29 +819,59 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 42.
+(Font)              scaled to size 9.37807pt on input line 16.
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 42.
+(Font)              scaled to size 7.29405pt on input line 16.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 16.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 42.
+(Font)              scaled to size 9.37807pt on input line 16.
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 42.
-<gipsDA-paper_files/gipsDA-paper_files/figure-latex/penguins-ggplot-1.pdf, id=5
-0, 453.695pt x 351.3125pt>
+(Font)              scaled to size 7.29405pt on input line 16.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 16.
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
+ts/enc/dvips/base/8r.enc}
+
+]
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 4
+5.
+(/usr/share/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 61
+.
+(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 9.18004pt on input line 61.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zi4' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+<figures/penguins.png, id=79, 72.27pt x 42.9605pt>
+File: figures/penguins.png Graphic file (type png)
+<use figures/penguins.png>
+Package pdftex.def Info: figures/penguins.png  used on input line 80.
+(pdftex.def)             Requested size: 398.44772pt x 212.57635pt.
+[2{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+<gipsDA-paper_files/gipsDA-paper_files/figure-latex/penguins-ggplot-1.pdf, id=9
+8, 453.695pt x 351.3125pt>
 File: gipsDA-paper_files/gipsDA-paper_files/figure-latex/penguins-ggplot-1.pdf 
 Graphic file (type pdf)
 <use gipsDA-paper_files/gipsDA-paper_files/figure-latex/penguins-ggplot-1.pdf>
 Package pdftex.def Info: gipsDA-paper_files/gipsDA-paper_files/figure-latex/pen
-guins-ggplot-1.pdf  used on input line 72.
+guins-ggplot-1.pdf  used on input line 120.
 (pdftex.def)             Requested size: 453.6939pt x 351.31163pt.
 
-Overfull \hbox (55.35532pt too wide) in paragraph at lines 72--73
+Overfull \hbox (55.35532pt too wide) in paragraph at lines 120--121
  [][] 
  []
 
@@ -865,23 +879,15 @@ Overfull \hbox (55.35532pt too wide) in paragraph at lines 72--73
 \tf@brf=\write6
 \openout6 = `RJwrapper.brf'.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
-ts/enc/dvips/base/8r.enc}
-
-{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 14.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 14.
-)
+[3 <./figures/penguins.png>] [4 <./gipsDA-paper_files/gipsDA-paper_files/figure
+-latex/penguins-ggplot-1.pdf>])
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 90.
+(Font)              using `T1/zi4/m/n' instead on input line 138.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 90.
-[2 <./figures/penguins.png>] [3 <./gipsDA-paper_files/gipsDA-paper_files/figure
--latex/penguins-ggplot-1.pdf>]) [4] (./RJwrapper.aux)
+(Font)              scaled to size 9.18004pt on input line 138.
+) [5] (./RJwrapper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -890,26 +896,29 @@ L3 programming layer <2026-01-19>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
-(rerunfilecheck)             Checksum: 580BBE342AB5FEA3EF6D8764167BF779;1195.
+(rerunfilecheck)             Checksum: 73DEE26141BF59F3693719134C6B8B9A;1647.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: C3F8DC6209FE66D5B9156CBAC85F9672;184.
+(rerunfilecheck)             Checksum: 16B634D2DD8952D4827450B3536170B4;500.
  ) 
 Here is how much of TeX's memory you used:
- 27156 strings out of 468874
- 487023 string characters out of 5453586
- 923788 words of memory out of 5000000
- 55200 multiletter control sequences out of 15000+600000
- 658677 words of font info for 178 fonts, out of 8000000 for 9000
+ 27332 strings out of 468874
+ 489906 string characters out of 5453586
+ 921110 words of memory out of 5000000
+ 55288 multiletter control sequences out of 15000+600000
+ 668359 words of font info for 238 fonts, out of 8000000 for 9000
  370 hyphenation exceptions out of 8191
- 117i,11n,131p,1338b,672s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,11n,131p,1340b,908s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></
-usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist
-/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/pal
-atino/uplri8a.pfb>
-Output written on RJwrapper.pdf (4 pages, 133311 bytes).
+usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/mat
+hpazo/fplmb.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></us
+r/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/f
+onts/type1/urw/palatino/uplri8a.pfb>
+Output written on RJwrapper.pdf (5 pages, 170426 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
- 49223 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 184 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 60999 words of extra memory for PDF output out of 61914 (max. 10000000)
 
