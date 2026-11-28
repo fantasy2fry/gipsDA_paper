@@ -49,14 +49,14 @@ The core may be the concept of \emph{exchangeability}. In many datasets, feature
   \textbf{Industrial Sensor Systems:} In predictive maintenance and fault detection, systems are often monitored by multiple sensors recording analogous physical quantities. A prime example is the Sensorless Drive Diagnosis dataset \citep{dataset_for_sensorless_drive_diagnosis_325}, which involves electric current signals from different phases of a motor \citep{seera2014classification}. In a balanced three-phase system, the physical properties of the phases are designed to be identical. Consequently, the statistical relationship between Phase A and Phase B should theoretically be invariant to the relationship between Phase B and Phase C. Treating these signals as exchangeable via permutation symmetry reflects the physical reality of the hardware design.
 \end{itemize}
 
-Furthermore, the \pkg{gips} approach utilized by our package does not require prior knowledge of these specific relationships. Unlike rigid regularization methods that force the covariance matrix towards a specific target (such as the identity matrix), \pkg{gips} methodology aims to discover the optimal symmetry structure from the data itself \citep{JSSv112i07}.
+Furthermore, the \CRANpkg{gips} approach utilized by our package does not require prior knowledge of these specific relationships. Unlike rigid regularization methods that force the covariance matrix towards a specific target (such as the identity matrix), \CRANpkg{gips} methodology aims to discover the optimal symmetry structure from the data itself \citep{JSSv112i07}.
 
 We introduce and implementat a novel regularization framework for Discriminant Analysis, designed for the ``High Dimension, Low Sample Size'' (HDLSS) regime.
 
 We highlight following functionalitites of our package: TODO
 * Funkcjonalności do zmyślenia / przekonania siebie samego
 
-The \pkg{gipsDA} is available at \href{https://cran.r-project.org/web/packages/gipsDA/}{CRAN} and can be installed in R with the following command
+The \CRANpkg{gipsDA} is available at \href{https://cran.r-project.org/web/packages/gipsDA/}{CRAN} and can be installed in R with the following command
 
 \begin{verbatim}
 install.packages("gipsDA")
@@ -64,15 +64,72 @@ install.packages("gipsDA")
 
 The rest of the article is organized as follows. TODO
 
-\section{Related Work}\label{related-work}
+\section{Theoretical Underpinnings}\label{theoretical-underpinnings}
 
-Some packages on interactive graphics include \CRANpkg{plotly} that interfaces with Javascript for web-based interactive graphics, \CRANpkg{crosstalk} that specializes cross-linking elements across individual graphics. The recent R Journal paper \CRANpkg{tsibbletalk} provides a good example of including interactive graphics into an article for the journal. It has both a set of linked plots, and also an animated gif example, illustrating linking between time series plots and feature summaries.
+\subsection{Linear and quadratic discriminant analysis}\label{linear-and-quadratic-discriminant-analysis}
 
-\section{\texorpdfstring{Customizing tooltip design with \pkg{ToOoOlTiPs}}{Customizing tooltip design with }}\label{customizing-tooltip-design-with}
+Classical LDA and QDA model class-conditional distributions as multivariate Gaussians \(\mathrm{N}_p(\boldsymbol{\mu}_g,\boldsymbol{\Sigma}_g)\) and assign a new observation \(\mathbf{x}\) to the class maximizing the posterior probability, or equivalently the discriminant score \citep{elemstats, venables2002}. LDA assumes a common covariance \(\boldsymbol{\Sigma}_g\equiv\boldsymbol{\Sigma}\) for all classes \(g=1,\ldots,m\), so that the decision boundaries are linear in \(\mathbf{x}\) and estimation reduces to class means together with a single pooled sample covariance. QDA relaxes the homoscedasticity assumption and estimates a separate \(\boldsymbol{\Sigma}_g\) in each class, yielding quadratic boundaries at the price of many more covariance parameters. In both cases the plug-in rules depend on invertible covariance estimates, which is precisely where the permutation-invariant projections from \CRANpkg{gips} become useful.
+
+\subsection{\texorpdfstring{The \CRANpkg{gips} methodology}{The  methodology}}\label{the-methodology}
+
+The methodology of \CRANpkg{gipsDA} builds on the theory of Gaussian models invariant under permutation symmetry, as developed by \citet{10.1214/22-AOS2174} and implemented in the \CRANpkg{gips} package \citep{JSSv112i07}. We summarize only the ingredients needed later; for proofs, conjugacy results, and algorithmic details we refer the reader to those sources.
+
+Let \(Z^{(1)},\ldots,Z^{(n)}\) be an i.i.d.~sample from the centered Gaussian distribution \(\mathrm{N}_p(0,\boldsymbol{\Sigma})\), and let \(\mathfrak{S}_p\) denote the symmetric group on \(\{1,\ldots,p\}\). For a subgroup \(\Gamma\subset\mathfrak{S}_p\), the model is said to be \emph{invariant under} \(\ \Gamma\) if
+\[
+g\cdot\boldsymbol{\Sigma}\cdot g^\top = \boldsymbol{\Sigma}
+\quad\text{for all } g\in\Gamma,
+\]
+where each permutation is identified with its permutation matrix. Equivalently, \(\boldsymbol{\Sigma}\) belongs to the \emph{colored space}
+\[
+\mathcal{Z}_{\Gamma}
+:=
+\bigl\{
+S\in\mathrm{Sym}(p;\mathbb{R})
+:
+S_{i,j}=S_{\sigma(i),\sigma(j)}
+\text{ for all }\sigma\in\Gamma
+\text{ and all }i,j
+\bigr\}
+\]
+and to the corresponding \emph{colored cone} of positive definite matrices \(\mathcal{P}_{\Gamma}:=\mathcal{Z}_{\Gamma}\cap\mathrm{Sym}^+(p;\mathbb{R})\).
+
+Any symmetric matrix \(S\) can be projected onto \(\mathcal{Z}_{\Gamma}\) by group averaging,
+\[
+\pi_{\Gamma}(S)
+:=
+\frac{1}{|\Gamma|}
+\sum_{\sigma\in\Gamma}
+\sigma\cdot S\cdot\sigma^\top.
+\]
+The projected matrix inherits the equality constraints induced by \(\Gamma\), which reduces the number of free covariance parameters. In particular, when \(\Gamma=\langle\sigma\rangle\) is cyclic, the maximum likelihood estimator of \(\boldsymbol{\Sigma}\) under this constraint exists as soon as the sample size exceeds the number of cycles of \(\sigma\) (counting in cycles of length 1), which can be substantially smaller than \(p\) \citep{JSSv112i07}.
+
+Model selection over candidate symmetries is carried out in a Bayesian framework. Placing a uniform prior on the set of cyclic subgroups of \(\mathfrak{S}_p\) and a Diaconis--Ylvisaker conjugate prior on the precision matrix \citep{diaconis1979conjugate} yields an explicit posterior over permutation structures \citep{10.1214/22-AOS2174}. The \CRANpkg{gips} package returns either the maximum a posteriori (MAP) cyclic subgroup or an approximation of the full posterior; the empirical covariance is then replaced by its projection onto the corresponding invariant cone. For \(p\le 9\) the search can be exhaustive, while for larger \(p\) a Metropolis--Hastings sampler is used \citep{JSSv112i07}. Multi-sample Bayesian selection over several covariance matrices that share one permutation structure is also available in \CRANpkg{gips} (version \(\ge 1.3.0\)).
+
+\subsection{\texorpdfstring{Models in \CRANpkg{gipsDA}}{Models in }}\label{models-in}
+
+The package wraps the classical LDA and QDA rules around covariance estimators obtained from \CRANpkg{gips}. In each case one (i) forms the relevant empirical covariance matrix or matrices, (ii) selects a cyclic permutation structure by MAP estimation or by posterior-weighted averaging, and (iii) replaces the empirical matrix by its projection onto the corresponding invariant cone. The multi-sample selection formerly developed as a separate \texttt{gipsmult} backend is now part of \CRANpkg{gips}; \CRANpkg{gipsDA} only consumes that interface when a joint symmetry across classes is required.
+
+Three classifiers are provided.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{gipslda()}} follows LDA: class-specific sample covariances are first pooled into one matrix and then projected under a single shared permutation structure. Pooling may use the classical unbiased estimator \(\sum_g(n_g-1)S_g/(n-m)\) (the default) or a size-weighted average \(\sum_g n_g S_g/n\); this choice concerns how class covariances are combined \emph{before} projection and should not be confused with posterior averaging over permutations. The projected matrix is then used as the common \(\boldsymbol{\Sigma}\) in the LDA decision rule.
+\item
+  \textbf{\texttt{gipsqda()}} follows QDA most closely: \CRANpkg{gips} is applied independently within each class, so every class may receive its own covariance estimate and its own symmetry. This is the most flexible of the three models.
+\item
+  \textbf{\texttt{gipsmultqda()}} keeps class-specific covariances, as in QDA, but estimates one permutation structure jointly from all classes through the multi-sample interface of \CRANpkg{gips}. Classes may therefore differ in scale while sharing a common pattern of feature exchangeability.
+\end{itemize}
+
+In terms of model nesting, \texttt{gipsqda()} is the least constrained, \texttt{gipslda()} the most constrained, and \texttt{gipsmultqda()} occupies the intermediate regime of heteroscedastic covariances with a common symmetry. Practical fitting options shared by all three functions---brute-force versus Metropolis--Hastings search, MAP versus posterior averaging over symmetries, and related controls---are described in the next section.
+
+\section{Implementation}\label{implementation}
 
 \pkg{ToOoOlTiPs} is a packages for customizing tooltips in interactive graphics, it features these possibilities.
 
-\section{A gallery of tooltips examples}\label{a-gallery-of-tooltips-examples}
+\section{Exemplary Applications}\label{exemplary-applications}
+
+\section{Case Studies}\label{case-studies}
 
 The \CRANpkg{palmerpenguins} data features three penguin species which has a lovely illustration by Alison Horst in Figure \ref{fig:penguins-alison}.
 
